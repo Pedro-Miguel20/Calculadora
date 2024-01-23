@@ -326,10 +326,12 @@ function result(numero, clearFunction, position, percentagemm) {
   document.getElementById("historyButton").onclick = function (e) {
     document.querySelector("#historyAccess").style.height = 100 + "%";
     document.querySelector("#historyAccess").style.position = "fixed";
+    document.getElementById("toClose").textContent = "voltar";
   };
   document.getElementById("toClose").onclick = function (e) {
     document.querySelector("#historyAccess").style.height = 40 + "px";
     document.querySelector("#historyAccess").style.position = "relative";
+    document.getElementById("toClose").textContent = "histórico";
   };
 
   if (numeros.includes("%")) {
