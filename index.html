@@ -5,52 +5,62 @@
 
 </head>
 <style>
-  @import url('https://fonts.cdnfonts.com/css/calculator');
+@import url('https://fonts.cdnfonts.com/css/calculator');
 
 html, body {
-    width: 100%;
+  width: 100%;
   height: 100%;
   margin:0;
 }
-  
+
+* {
+    font-family: 'Solomon-Sans-Book', cursive;
+  -webkit-filter: blur(0.000001px);
+}
+
+.green{
+ color: #48cd83;
+ font-weight: bold;
+}
+
+.red{
+ color: #f19994;
+ font-weight: bold;
+}
+
 .calculator{
   display:flex;
   width:100%;
   height: 100%;
   flex-direction: column-reverse;
   align-items: center;
+  background-color: #010101;
+  position: relative;
  }
 
 .operators{
-      width: 90%;
+    width: 90%;
     display: grid;
     grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr;
     gap: 8px;
     position: relative;
-    margin: 10px;
+  bottom: 10px;
 }
-
 
 #result{
   height: -webkit-fill-available;
   width: -webkit-fill-available;
-}
-
-.calculator{
-    background-color: #010101;
-    position: relative;
-    
+  border-radius: 4rem;
 }
 
 button{
    width: 100%;
   height: 100%;
   border-radius: 100%;
-    font-size: 30px;
+    font-size: clamp(15px, 9vw, 30px);
     background-color: #171717;
     border: solid 0.1px #282828;
     color: white;
-  font-family: 'Solomon-Sans-Book', cursive;
 }
 
 button:active{
@@ -58,22 +68,18 @@ button:active{
 }
 
 #display{
-  width:90%;
-  height: 40px;
-  margin-left: 10px;
-  font-size: 40px;
+  width:98%;
+  height: 45px;
+  font-size: clamp(30px, 13vw, 50px);
     outline: 0;
     border: none;
   color:white;
     background-color: transparent;
-   font-family: 'Solomon-Sans-Book', cursive;
-  text-align:right;
-  resize:none;
-  overflow:hidden;
+      text-align: end;
+   margin: 5px;
 }
 
 p{
-  font-family: 'Solomon-Sans-Book', cursive;
   color:  white;
   font-size: 28px;
   height: 28px;
@@ -93,21 +99,13 @@ p{
   align-items: center;
 }
 
-#trash{
-  position: absolute;
-  width: 5%;
-}
 .main {
     position: absolute;
     top: 0; bottom: 0; right: 0; left: 0; /*fill parent*/
   border-radius: 1000px;
 }
 
-.wrapper{
-  position: relative;
-  display: inline-block;
-}
-.wrapper2{
+.wrapper, .wrapper2{
   position: relative;
   display: inline-block;
 }
@@ -119,52 +117,47 @@ p{
 }
 
 .wrapper2:after {
-    padding-top: 50%; /*1:1 ratio*/
+    padding-top: 50%; /*2:1 ratio*/
     display: block;
     content: '';
 }
 
-#result{
-    border-radius: 4rem;
-    width: 200%;
-  }
 
-@media (min-width: 440px){
+@media only screen and (min-width: 450px){
+  html{
+    background-color: black;
+  }
+  .calculator{
+    width: 400px;
+    justify-content: center;
+  }
   .operators{
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    width:50%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 60%;
   }
   #result{
     border-radius: 4rem;
-    width: 200%;
   }
   .wrapper2{
-    grid-column:span 2;
     width: 100%;
     height: 100%;
   }
   .wrapper2 #divide{
     width:100%;
-    border-radius: 4rem;}
+    border-radius: 4rem;
+  }
+  body{
+    display: flex;
+    justify-content: center;
+  }
 }
 
 a{
-  font-family: 'Solomon-Sans-Book', cursive;
   color: white;
-  font-size: 20px;
+  font-size: clamp(15px, 9vw, 30px);
   margin:8px;
 }
 
-span{
-  font-family: 'Solomon-Sans-Book', cursive;
-    color: white;
-    font-size: 28px;
-    height: 28px;
-    padding: 5px;
-    margin: 0;
-    width: 90%;
-    border-bottom: solid 1px #282828;
-}
 </style>
 <body>
 <div class="calculator">
@@ -172,26 +165,25 @@ span{
     flex-direction: column-reverse;
     justify-content: flex-start; text-align: right;">
   </div>
-
   <div class="operators">
     <div class="wrapper">
       <div class="main">
-        <button id="clean" onclick="clearFunction()">c</button>
+        <button id="clean" class="red" onclick="clearFunction()">c</button>
       </div>
     </div>
     <div class="wrapper">
       <div class="main">
-        <button id="cleanLast" class="decrease" onclick="clearLast()">ce</button>
+        <button id="cleanLast" class="decrease red" onclick="clearLast()">ce</button>
       </div>
     </div>
     <div class="wrapper">
       <div class="main">
-        <button id="precentange button" value="%" onclick="myFunction()">%</button>
+        <button id="precentange button" value="%" class="green" onclick="myFunction()">%</button>
       </div>
     </div>
     <div class="wrapper">
       <div class="main">
-        <button id="add" class="sign" value="+" onclick="myFunction()">+</button>
+        <button id="add" class="sign green" value="+" onclick="myFunction()">+</button>
       </div>
     </div>
     <div class="wrapper">
@@ -211,7 +203,7 @@ span{
     </div>
     <div class="wrapper">
       <div class="main">
-        <button id="subtract button" class="sign" value="-" onclick="myFunction()">-</button>
+        <button id="subtract button" class="sign green" value="-" onclick="myFunction()">-</button>
       </div>
     </div>
     <div class="wrapper">
@@ -231,7 +223,7 @@ span{
     </div>
     <div class="wrapper">
       <div class="main">
-        <button id="multiply button" value="*" onclick="myFunction()">x</button>
+        <button id="multiply button" class="green" value="*" onclick="myFunction()">×</button>
       </div>
     </div>
     <div class="wrapper">
@@ -251,7 +243,7 @@ span{
     </div>
     <div class="wrapper2">
       <div class="main">
-        <button id="divide" class="sign" value="/" onclick="myFunction()">÷</button>
+        <button id="divide" class="sign green" value="/" onclick="myFunction()">÷</button>
       </div>
     </div>
     <div class="wrapper">
@@ -264,24 +256,26 @@ span{
         <button onclick="myFunction()" value="0" id="number">0</button>
       </div>
     </div>
-    <div class="wrapper">
+    <div class="wrapper2" style="grid-column: 3/span 2;">
       <div class="main">
         <button id="result" onclick="result()">=</button>
       </div>
     </div>
   </div>
 
-  <textarea type="text" id="display" name="myInput" size="1" rows="5"></textarea>
+<input type="text" id="display" name="myInput">
   <p id="historyButton"></p>
 
   <div id="historyAccess"><a id="toClose">histórico</a></div>
 </div>
 <i class="bi bi-trash"></i>
 <script>
-  var numero;
+var numero;
 var position;
 var toSubtract = [];
 var numeros = [];
+var currentFont = 40;
+var hisvalues = [];
 
 function clearFunction(numero, result) {
   document.getElementById("display").value = "";
@@ -293,31 +287,40 @@ function clearLast() {
   document.getElementById("display").value = numeros.join("");
 }
 
-var currentFont = 40;
-
-function myFunction(add, subtract, multiply, divide, clearFunction) {
+function myFunction(add, subtract, multiply, divide, clearFunction, s) {
   var number = event.target.value;
   numeros.push(number);
   document.getElementById("display").value = numeros.join("");
 }
 
-function result(numero, clearFunction, position, percentagemm) {
+function result(numero, clearFunction, position, percentagem) {
   var o = 0;
   var equal = 0;
-  document.getElementById("display").style.height = 40 + "px";
+  document.getElementById("display").style.height = 50 + "px";
   var teste = document.getElementById("historyAccess");
   var para = document.createElement("p");
-  document.querySelector("#historyAccess").appendChild(para);
-  para.textContent = document.getElementById("display").value;
+  function myFunctionNew() {
+    document.querySelector("#historyAccess").appendChild(para);
+    para.textContent = document.getElementById("display").value;
+    hisvalues.push(para.textContent);
+  }
+  if (document.getElementById("historyAccess").childElementCount === 1) {
+    myFunctionNew();
+  }
+  if (hisvalues.includes(document.getElementById("display").value)) {
+  } else {
+    myFunctionNew();
+  }
 
   para.addEventListener("click", function (e) {
     para = event.target.textContent;
     var memory = [];
     numeros = para.split("");
-    console.log(memory);
     document.getElementById("display").value = numeros.join("");
-    document.querySelector("#historyAccess").style.height = 40 + "px";
+    document.querySelector("#historyAccess").style.height = 50 + "px";
     document.querySelector("#historyAccess").style.position = "relative";
+    document.getElementById("toClose").textContent = "histórico";
+    document.querySelector("#historyAccess").style.overflow = "hidden";
   });
 
   document.getElementById(
@@ -325,11 +328,13 @@ function result(numero, clearFunction, position, percentagemm) {
   ).textContent = document.getElementById("display").value;
   document.getElementById("historyButton").onclick = function (e) {
     document.querySelector("#historyAccess").style.height = 100 + "%";
+    document.querySelector("#historyAccess").style.overflow = "overlay";
     document.querySelector("#historyAccess").style.position = "fixed";
     document.getElementById("toClose").textContent = "voltar";
   };
   document.getElementById("toClose").onclick = function (e) {
-    document.querySelector("#historyAccess").style.height = 40 + "px";
+    document.querySelector("#historyAccess").style.height = 50 + "px";
+    document.querySelector("#historyAccess").style.overflow = "hidden";
     document.querySelector("#historyAccess").style.position = "relative";
     document.getElementById("toClose").textContent = "histórico";
   };
@@ -368,6 +373,7 @@ function result(numero, clearFunction, position, percentagemm) {
   numeros.length = 0;
   numeros.push((document.getElementById("display").value = eval(valores)));
 }
+
 </script>
 </body>
 </html>
